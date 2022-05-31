@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Copies.cpp" />
+    <ClCompile Include="CopiesHeader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CopiesHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

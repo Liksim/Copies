@@ -1,20 +1,38 @@
-﻿// Copies.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include <iostream>
+#include "CopiesHeader.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* neededAmountOfCopies)
+{
+}
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+bool isCorrectData(const string* str, ifstream* fin)
+{
+    return false;
+}
+
+long long calcMinTimeOfPrintingByTwoCopiers(Copier* firstCopier, Copier* secondCopier, const int neededAmountOfCopies)
+{
+    return 0;
+}
+
+void swapNumbers(int* firstNumber, int* secondNumber)
+{
+}
+
+int nod(int largerNumber, int smallerNumber)
+{
+    return 0;
+}
+
+void progressHandlerOfCopier(Copier* copier, int* printedCopies, const int oneStepTime)
+{
+}
+
+void output(const char* file, const long long answer, const ErrorKeeper error)
+{
+}
