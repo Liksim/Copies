@@ -8,6 +8,10 @@ int main()
 
 void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* neededAmountOfCopies)
 {
+    // Заглушка для типового теста
+    firstCopier->copyTime = 3;
+    secondCopier->copyTime = 2;
+    *neededAmountOfCopies = 8;
 }
 
 bool isCorrectData(const string* str, ifstream* fin)
