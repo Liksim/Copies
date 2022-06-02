@@ -41,7 +41,17 @@ void swapNumbers(int* firstNumber, int* secondNumber)
 
 int nod(int largerNumber, int smallerNumber)
 {
-    return 0;
+    int buffer = 1;      // Буфер
+
+    // Алгоритм Евклида...
+    while (smallerNumber)    // ...Пока меньшее число не равно 0
+    {
+        buffer = smallerNumber;                         // Сохранить в буфер меньшее число
+        smallerNumber = largerNumber % smallerNumber;   // Приравнять меньшее число остатку от деления большего числа на меньшее
+        largerNumber = buffer;                          // Приравнять большее число значению из буфера
+    }
+
+    return buffer;   // Вернуть полученный наибольший общий делитель
 }
 
 void progressHandlerOfCopier(Copier* copier, int* printedCopies, const int oneStepTime)
