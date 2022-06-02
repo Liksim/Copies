@@ -56,6 +56,13 @@ int nod(int largerNumber, int smallerNumber)
 
 void progressHandlerOfCopier(Copier* copier, int* printedCopies, const int oneStepTime)
 {
+    copier->timeCounter += oneStepTime;      // ...Увеличить счётчик времени ксерокса на время одного шага
+
+    if (copier->timeCounter == copier->copyTime)    // Если прошло достаточно времени, чтобы ксерокс успел распечатать копию
+    {
+        (*printedCopies)++;         // Инкрементировать число напечатанных копий
+        copier->timeCounter = 0;    // Обнулить счётчик времени ксерокса
+    }
 }
 
 void output(const char* file, const long long answer, const ErrorKeeper error)
