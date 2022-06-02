@@ -75,6 +75,8 @@ namespace inputTest
 			Copier firstCopier, secondCopier;
 			int neededAmountOfCopies;
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				input(file, &firstCopier, &secondCopier, &neededAmountOfCopies);
@@ -84,9 +86,14 @@ namespace inputTest
 				ErrorKeeper expError = { inputError };
 
 				Assert::AreEqual(expError.errorCode, error.errorCode, L"Неверный код ошибки.");
+
+				isErrorThrown = true;
 			}
 
-			Assert::Fail(L"Функция input не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция input не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(tooMuchData)
@@ -112,6 +119,8 @@ namespace inputTest
 			Copier firstCopier, secondCopier;
 			int neededAmountOfCopies;
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				input(file, &firstCopier, &secondCopier, &neededAmountOfCopies);
@@ -121,9 +130,14 @@ namespace inputTest
 				ErrorKeeper expError = { tooMuchDataError };
 
 				Assert::AreEqual(expError.errorCode, error.errorCode, L"Неверный код ошибки.");
+
+				isErrorThrown = true;
 			}
 
-			Assert::Fail(L"Функция input не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция input не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(notEnoughData)
@@ -147,6 +161,8 @@ namespace inputTest
 			Copier firstCopier, secondCopier;
 			int neededAmountOfCopies;
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				input(file, &firstCopier, &secondCopier, &neededAmountOfCopies);
@@ -156,9 +172,14 @@ namespace inputTest
 				ErrorKeeper expError = { notEnoughDataError };
 
 				Assert::AreEqual(expError.errorCode, error.errorCode, L"Неверный код ошибки.");
+
+				isErrorThrown = true;
 			}
 
-			Assert::Fail(L"Функция input не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция input не выбросила ошибку.");
+			}
 		}
 	};
 }
