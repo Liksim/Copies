@@ -34,6 +34,9 @@ long long calcMinTimeOfPrintingByTwoCopiers(Copier* firstCopier, Copier* secondC
 
 void swapNumbers(int* firstNumber, int* secondNumber)
 {
+    int buffer = *secondNumber;     // Сохранить в буфер второе число
+    *secondNumber = *firstNumber;   // Записать значение первого числа вместо второго
+    *firstNumber = buffer;          // Записать значение второго числа из буфера вместо первого
 }
 
 int nod(int largerNumber, int smallerNumber)
