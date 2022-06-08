@@ -23,19 +23,32 @@ bool isCorrectData(const string* str, ifstream* fin)
 
 long long calcMinTimeOfPrintingByTwoCopiers(Copier* firstCopier, Copier* secondCopier, const int neededAmountOfCopies)
 {
-    // Заглушка для типового теста
-    if (firstCopier->copyTime == 2 &&
-        firstCopier->timeCounter == 0 &&
-        secondCopier->copyTime == 3 &&
-        secondCopier->timeCounter == 0 &&
-        neededAmountOfCopies == 8)
+    firstCopier->timeCounter = 0;   // Обнулить счётчик времени первого ксерокса
+    secondCopier->timeCounter = 0;  // Обнулить счётчик времени второго ксерокса
+
+    // Считать более быстрый ксерокс первым...
+    if (firstCopier->copyTime > secondCopier->copyTime)   // ...Если первый ксерокс медленнее
     {
-        return 11;
+        swapNumbers(&firstCopier->copyTime, &secondCopier->copyTime); // Поменять ксероксы местами
     }
-    else
+
+    int oneStepTime = nod(secondCopier->copyTime, firstCopier->copyTime);   // Вычислить время одного шага обработки печати ксероксов (НОД времени печати ксероксов)
+
+    long long resultTime = 0;       // Итоговое время
+    int printedCopies = 0;          // Напечатанные копии
+
+    // Сделать копию оригинала на первом ксероксе...
+    resultTime += firstCopier->copyTime;    // ...Добавить время копирования первого ксерокса к итоговому времени
+    printedCopies++;                        // ...Инкрементировать число напечатанных копий
+
+    while (neededAmountOfCopies > printedCopies)    // Пока нужное количество копий не напечатано
     {
-        return 0;
+        resultTime += oneStepTime;      // Добавить время одного шага к итоговому времени
+        progressHandlerOfCopier(firstCopier, &printedCopies, oneStepTime);       // Засчитать работу первого ксерокса за время одного шага
+        progressHandlerOfCopier(secondCopier, &printedCopies, oneStepTime);      // Засчитать работу второго ксерокса за время одного шага
     }
+
+    return resultTime;  // Вернуть итоговое время
 }
 
 void swapNumbers(int* firstNumber, int* secondNumber)
