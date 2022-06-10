@@ -2,10 +2,46 @@
 
 void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* neededAmountOfCopies)
 {
-    // Заглушка для типового теста
-    firstCopier->copyTime = 3;
-    secondCopier->copyTime = 2;
-    *neededAmountOfCopies = 8;
+    int* inputDestination[3] = { &firstCopier->copyTime, &secondCopier->copyTime, neededAmountOfCopies };     // Массив назначений для входных данных
+    ifstream fin;       // Поток ввода
+    string str;         // Строка-буффер
+
+    fin.open(file);     // Открыть файл
+
+    if (fin.is_open())  // Если файл открыт
+    {
+        int i;          // Счётчик вводимых данных
+
+        for (i = 0; i < 3 && !fin.eof(); i++) // Для каждого назначения для входных данных и пока файл не закончился
+        {
+            getline(fin, str);  // Занести в строку-буффер входные данные
+
+            if (isCorrectData(&str, &fin))  // Если входные данные корректны
+            {
+                *(inputDestination[i]) = stoi(str);    // Занести входные данные в текущее назначение для входных данных
+            }
+        }
+
+        if (!fin.eof())     // Если файл не закончился
+        {
+            fin.close();                                // Закрыть файл
+            ErrorKeeper error = { tooMuchDataError };   // Считать, что произошла ошибка из-за переизбытка входных данных
+            throw error;                                // Выбросить исключение
+        }
+
+        fin.close();    // Закрыть файл
+
+        if (i < 3)  // Если данных слишком мало
+        {
+            ErrorKeeper error = { notEnoughDataError };     // Считать, что произошла ошибка из-за нехватки входных данных
+            throw error;                                    // Выбросить исключение
+        }
+    }
+    else    // Иначе
+    {
+        ErrorKeeper error = { inputError };     // Считать, что произошла ошибка ввода
+        throw error;                            // Выбросить исключение
+    }
 }
 
 bool isCorrectData(string* str, ifstream* fin)
