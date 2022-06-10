@@ -55,12 +55,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = ",";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -76,7 +80,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(zerosAtBeginning)
@@ -123,6 +130,8 @@ namespace isCorrectDataTest
 
 			int expErrorCode = 4;
 			string expIncorrectData = "0";
+			
+			bool isErrorThrown = false;
 
 			try
 			{
@@ -130,6 +139,8 @@ namespace isCorrectDataTest
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -145,7 +156,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(moreRange)
@@ -159,12 +173,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 4;
 			string expIncorrectData = "2147483648";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -180,7 +198,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(oneInvalidCharacter)
@@ -194,12 +215,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -215,7 +240,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(severalInvalidCharacters)
@@ -229,12 +257,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -250,7 +282,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(entireStringOfInvalidCharacters)
@@ -264,12 +299,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -285,7 +324,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(emptyString)
@@ -299,12 +341,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -320,7 +366,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(invalidCharacterAtBeginningOfString)
@@ -334,12 +383,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -355,7 +408,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(invalidCharacterAtEndOfString)
@@ -369,12 +425,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -390,7 +450,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(invalidCharacterInMultiplePlaces)
@@ -404,12 +467,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -425,7 +492,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 
 		TEST_METHOD(complexTest)
@@ -439,12 +509,16 @@ namespace isCorrectDataTest
 			int expErrorCode = 3;
 			string expIncorrectData = "*";
 
+			bool isErrorThrown = false;
+
 			try
 			{
 				actual = isCorrectData(&str, &fin);
 			}
 			catch (ErrorKeeper error)
 			{
+				isErrorThrown = true;
+
 				if (fin.is_open())
 				{
 					fin.close();
@@ -460,7 +534,10 @@ namespace isCorrectDataTest
 				fin.close();
 			}
 
-			Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			if (!isErrorThrown)
+			{
+				Assert::Fail(L"Функция isCorrectData не выбросила ошибку.");
+			}
 		}
 	};
 }
