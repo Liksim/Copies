@@ -8,17 +8,47 @@ void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* nee
     *neededAmountOfCopies = 8;
 }
 
-bool isCorrectData(const string* str, ifstream* fin)
+bool isCorrectData(string* str, ifstream* fin)
 {
-    // Заглушка для типового теста
-    if (*str == "125")
+    if (*str == "")     // Если проверяемая строка пуста
     {
-        return true;
+        fin->close();   // Закрыть файл
+
+        string incorrectData = *str;                            // Считать ошибочными данными пустую строку
+
+        ErrorKeeper error = { invSymbolError , incorrectData }; // Считать, что произошла ошибка из-за недопустимого символа во входных данных
+        throw error;                                            // Выбросить исключение
     }
-    else
+
+    for (int i = 0; i < str->length(); i++)     // Для каждого символа проверяемой строки
     {
-        return false;
+        if ((*str)[i] < '0' || (*str)[i] > '9')   // Если текущий символ не является цифрой
+        {
+            fin->close();    // Закрыть файл
+
+            string incorrectData = "";      // Строка с ошибочными данными
+            incorrectData = (*str)[i];      // Считать ошибочными данными текущий символ
+
+            ErrorKeeper error = { invSymbolError , incorrectData };     // Считать, что произошла ошибка из-за недопустимого символа во входных данных
+            throw error;                                                // Выбросить исключение
+        }
     }
+
+    // Удалить нули в начале проверяемой строки...
+    while ((*str)[0] == '0' && str->length() > 1)   // ...Пока в начале проверяемой строки стоит ноль
+    {
+        str->erase(0, 1);       // Удалить первый символ проверяемой строки
+    }
+
+    if (str->length() > 10 || *str == "0" || (str->length() == 10 && *str > "2147483647"))   // Если в проверяемой строке число не входит в диапазон [1..2147483647]
+    {
+        fin->close();    // Закрыть файл
+
+        ErrorKeeper error = { outOfRangeError, *str };  // Считать, что произошла ошибка из-за выхода из диапазона допустимых значений
+        throw error;                                    // Выбросить исключение
+    }
+
+    return true;        // Вернуть, что данные корректны
 }
 
 long long calcMinTimeOfPrintingByTwoCopiers(Copier* firstCopier, Copier* secondCopier, const int neededAmountOfCopies)

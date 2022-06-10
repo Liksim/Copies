@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <fstream>
 
@@ -33,7 +34,7 @@ void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* nee
 	param[in] fin поток ввода
 	return корректны ли данные
 */
-bool isCorrectData(const string* str, ifstream* fin);
+bool isCorrectData(string* str, ifstream* fin);
 
 /*! Рассчитать минимальное время печати заданного кол-ва копий с помощью двух ксероксов
 	param[in] firstCopier первый ксерокс
