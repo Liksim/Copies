@@ -47,7 +47,7 @@ struct Copier
 void input(const char* file, Copier* firstCopier, Copier* secondCopier, int* neededAmountOfCopies);
 
 /*! Проверить корректны ли данные (числа от 1 до 2147483647)
-*	\param[in|out] str проверяемая строка
+*	\param[in,out] str проверяемая строка
 *	\param[in] fin поток ввода
 *	\return корректны ли данные
 *	\exception error ошибка из-за недопустимого символа/из-за выхода из диапазона допустимых значений
@@ -63,8 +63,8 @@ bool isCorrectData(string* str, ifstream* fin);
 long long calcMinTimeOfPrintingByTwoCopiers(Copier* firstCopier, Copier* secondCopier, const int neededAmountOfCopies);
 
 /*! Поменять числа местами
-*	\param[in|out] firstNumber первое число
-*	\param[in|out] secondNumber второе число
+*	\param[in,out] firstNumber первое число
+*	\param[in,out] secondNumber второе число
 */
 void swapNumbers(int* firstNumber, int* secondNumber);
 
@@ -76,8 +76,8 @@ void swapNumbers(int* firstNumber, int* secondNumber);
 int nod(int largerNumber, int smallerNumber);
 
 /*! Засчитать работу ксерокса за время одного шага
-*	\param[in|out] copier ксерокс
-*	\param[in|out] printedCopies напечатанные копии
+*	\param[in,out] copier ксерокс
+*	\param[in,out] printedCopies напечатанные копии
 *	\param[in] oneStepTime время одного шага обработки печати ксероксов
 */
 void progressHandlerOfCopier(Copier* copier, int* printedCopies, const int oneStepTime);
